@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GeoIstmo Topografía | Levantamientos y replanteos en Panamá Oeste</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@300;400;500;700&display=swap">
+<style>
+:root{--moss:#314218;--fern:#3d521e;--lichen:#64754b;--floor:#212f0c;--bog:#18210c;--amber:#dc8c46;--parch:#eeeeee;--char:#333333;--lime:#d8dcd2;--contour:#64754b;--serif:Fraunces,"Times New Roman",Georgia,serif;--sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));background:var(--moss)}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{margin:0;background:var(--moss);color:var(--parch);font:400 16px/1.5 var(--sans);letter-spacing:.033em;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:300;color:#fff;margin:0 0 .5em}
+h1{font-size:clamp(3.3rem,10.5vw,86px);line-height:.88;letter-spacing:-.04em}
+h2{font-size:clamp(2.2rem,5.2vw,50px);line-height:.96;letter-spacing:-.033em}
+h3{font-size:1.6rem;line-height:1.11;letter-spacing:-.033em;font-weight:400}
+p{margin:0 0 1em;max-width:62ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--amber);transform:scaleX(0);transform-origin:0 50%;z-index:50;pointer-events:none}
+.ticker{background:var(--moss);color:#fff;overflow:hidden;white-space:nowrap;padding:9px 0;font:500 12px/1.43 var(--sans);letter-spacing:.033em;text-transform:uppercase;border-bottom:1px solid var(--lichen)}
+.ticker div{display:inline-block;animation:mq 48s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--moss) 86%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.nav.scrolled{border-bottom-color:var(--lichen)}
+header.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font:300 1.6rem var(--serif);letter-spacing:-.033em}
+nav{display:flex;gap:4px 22px;flex-wrap:wrap;justify-content:center}
+nav a{text-decoration:none;color:#fff;font:500 12px/1.43 var(--sans);letter-spacing:.033em;text-transform:uppercase;padding:6px 0;border-bottom:1px solid transparent}
+nav a:hover,nav a.active{border-bottom-color:var(--amber)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:var(--bog);font:500 16px/1 var(--sans);letter-spacing:.033em;text-decoration:none;padding:14px 22px;border:0;border-radius:20px;margin:6px 10px;cursor:pointer;transition:filter .2s}
+.btn:hover{filter:brightness(1.08)}
+.btn svg{flex:none}
+.btn.alt{background:transparent;color:var(--char);border:1.5px solid var(--char)}
+.nav-cta{margin:0;padding:11px 18px;font-size:14px}
+.ghost{display:inline-block;color:#fff;text-decoration:none;font:400 16px/1.5 var(--sans);letter-spacing:.033em;border-bottom:1px solid #fff;margin:6px 14px}
+.hero{background:var(--moss);position:relative;overflow:hidden;display:flex;align-items:center;min-height:min(88vh,780px);padding:0;text-align:center}
+.hero svg.bg{position:absolute;inset:0;width:100%;height:100%;opacity:.95}
+.hero .wrap{position:relative;width:100%;padding-top:96px;padding-bottom:104px}
+.hero p{margin-left:auto;margin-right:auto;color:var(--parch)}
+.hero p.lead{font:300 clamp(1.5rem,3.4vw,28px)/1.11 var(--serif);letter-spacing:-.033em;color:#fff;margin-top:28px}
+.tag{display:inline-block;background:var(--lime);color:var(--char);padding:3px 10px;border-radius:6px;font:500 12px/1.43 var(--sans);letter-spacing:.033em;margin-bottom:28px}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:.2em .06em .34em;margin:-.2em -.06em -.34em}
+.wi{display:inline-block}
+section{padding:80px 0;background:var(--moss)}
+#servicios,#portafolio{background:var(--floor)}
+section.stats{background:var(--floor);padding:64px 0;border-top:1px solid var(--lichen);border-bottom:1px solid var(--lichen)}
+section.clients{padding:64px 0;border-bottom:1px solid var(--lichen)}
+section.stage{padding-top:24px;margin-top:0}
+section .wrap>h2,.wrap>h3{text-align:center}
+section .wrap>p{margin-left:auto;margin-right:auto;text-align:center}
+section .wrap>h2{margin-bottom:.4em}
+.stats-title,.clients h2{font-size:clamp(1.8rem,4vw,36px)!important;line-height:1;margin-bottom:36px!important}
+.rv{font:300 clamp(1.5rem,3vw,2rem)/1.25 var(--serif)!important;letter-spacing:-.02em;color:#fff;max-width:900px!important;margin-bottom:0!important}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:40px}
+.stats .grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px;margin-top:0}
+.stat{text-align:center}
+.stat b{display:block;font:300 clamp(3rem,7vw,64px)/1 var(--serif);letter-spacing:-.04em;color:#fff}
+.stat span{display:block;margin-top:8px;font:400 14px/1.43 var(--sans);color:var(--lime)}
+.logos{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 48px;margin:0;padding:0}
+.logos li{font:500 13px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.card{position:relative;overflow:hidden;isolation:isolate;background:var(--fern);border:1px solid var(--lichen);border-radius:6px;padding:24px;transition:border-color .3s}
+.card:hover{border-color:var(--lime)}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,#64754b 55%,transparent),transparent 60%)}
+.card:hover::before{opacity:1}
+.card p{font-size:16px}
+.ic{display:block;margin-bottom:16px}
+.card.panel{background:#fff;color:var(--char);border:0;box-shadow:rgba(0,0,0,.2) 0 2px 5px 0}
+.card.panel::before{display:none}
+.panel h3{color:var(--char)}
+.small{font-size:14px;color:var(--lime)}
+.panel .small{color:#666}
+.card a:not(.btn){text-decoration:none;border-bottom:1px solid var(--amber)}
+.team{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-top:32px}
+.person{text-align:center;padding:8px 4px}
+.person .ini{width:60px;height:60px;border-radius:50%;background:var(--fern);border:1px solid var(--lichen);color:#fff;display:grid;place-items:center;font:300 1.4rem var(--serif);margin:0 auto 12px}
+.person b{display:block;font:500 1.05rem/1.3 var(--sans);color:#fff}
+.person span{display:block;color:var(--lime);font:500 12px/1.43 var(--sans);text-transform:uppercase;letter-spacing:.06em;margin:4px 0 8px}
+.person p{margin-left:auto;margin-right:auto}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:14px 0 24px}
+.chip{font:500 14px/1 var(--sans);letter-spacing:.033em;padding:12px 18px;min-height:44px;border:1px solid #fff;background:transparent;color:#fff;border-radius:20px;cursor:pointer}
+.chip[aria-pressed="true"]{background:#fff;color:var(--char)}
+.panel .chips{justify-content:flex-start}
+.panel .chip{border-color:var(--char);color:var(--char)}
+.panel .chip[aria-pressed="true"]{background:var(--char);color:#fff}
+.field{display:grid;gap:6px;margin-bottom:14px}
+.field label{font-weight:500;font-size:14px}
+.field input,.field select{font:inherit;width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--lime);border-radius:6px;background:var(--parch);color:var(--char)}
+.reco{border-left:3px solid var(--lichen);background:var(--parch);padding:14px 18px;border-radius:6px;font-size:15px}
+.proj img{width:100%;height:210px;object-fit:cover;display:block;border-radius:6px;margin-bottom:14px;background:var(--lichen)}
+dl{margin:10px 0 0;font-size:15px}dt{font-weight:500;float:left;margin-right:6px;color:#fff}dd{margin:0 0 4px}
+.news time{font-weight:500;color:#fff}
+.viewer{margin-top:40px;background:#fff;color:var(--char);border-radius:6px;box-shadow:rgba(0,0,0,.2) 0 2px 5px 0;overflow:hidden;text-align:left}
+.vbar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--lime);font:500 13px var(--sans)}
+.vbar i{width:10px;height:10px;border-radius:50%;background:var(--lime)}
+.vbar b{margin-left:8px;font-weight:500}
+.vbar .coord{margin-left:auto;color:#666;font-weight:400}
+.vbody{display:grid;grid-template-columns:270px 1fr;min-height:440px}
+.vside{border-right:1px solid var(--lime);padding:12px;display:flex;flex-direction:column;gap:8px}
+.vside button{text-align:left;background:var(--parch);border:1px solid transparent;border-radius:6px;padding:12px;font:500 14px/1.3 var(--sans);letter-spacing:.02em;color:var(--char);cursor:pointer}
+.vside button small{display:block;font-weight:400;color:#666;margin-top:3px}
+.vside button[aria-pressed="true"]{border-color:var(--amber);background:#fff;box-shadow:rgba(0,0,0,.2) 0 2px 5px 0}
+.vmap{position:relative;background:var(--parch)}
+.vmap svg{display:block;width:100%;height:100%;min-height:440px}
+.pin{cursor:pointer;outline:none}
+.pin .ring{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
+.pin .dotc{transform-box:fill-box;transform-origin:center;transition:transform .3s}
+.pin.on .dotc,.pin:hover .dotc{transform:scale(1.35)}
+@keyframes pulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(3.2);opacity:0}}
+.vcard{position:absolute;left:16px;bottom:16px;max-width:330px;background:#fff;border-radius:6px;padding:16px;box-shadow:rgba(0,0,0,.2) 0 2px 5px 0}
+.vcard h3{color:var(--char);font-size:1.3rem;margin:8px 0 6px}
+.vcard p{font-size:14px;margin:0 0 6px;color:#444}
+.vcard .tagv{display:inline-block;background:var(--lime);color:var(--char);padding:2px 8px;border-radius:6px;font:500 12px var(--sans)}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px;z-index:30}
+.fab a{background:var(--amber);color:var(--bog);text-decoration:none;font:500 14px/1 var(--sans);padding:13px 18px;border-radius:20px;text-align:center;box-shadow:rgba(0,0,0,.2) 0 2px 5px 0}
+.fab a+a{background:#fff;color:var(--char)}
+footer{background:var(--bog);color:var(--lime);padding:64px 0 28px;font-size:14px}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 2fr;gap:40px}
+footer h4{font:500 12px/1.43 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#fff;margin:0 0 14px}
+footer a,footer span{display:block;color:var(--lime);text-decoration:none;margin-bottom:8px}
+footer a:hover{color:#fff}
+footer .brand{margin-bottom:12px}
+.legal{border-top:1px solid var(--lichen);margin:40px 0 0;padding-top:20px;max-width:none;font-size:13px}
+@media(max-width:900px){header.nav .wrap{flex-wrap:wrap;padding-top:8px;padding-bottom:6px}nav{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:4px}nav a{white-space:nowrap}.fgrid{grid-template-columns:1fr}}
+@media(max-width:800px){.vbody{grid-template-columns:1fr}.vside{border-right:0;border-bottom:1px solid var(--lime);flex-direction:row;overflow-x:auto}.vside button{min-width:210px}.vcard{position:static;margin:12px;max-width:none}.vmap svg{min-height:300px}}
+@media(prefers-reduced-motion:reduce){.ticker div,.pin .ring{animation:none}}
+.card:not(.panel){background:transparent;border:0;border-top:1px solid var(--lichen);border-radius:0;padding:20px 0 0;overflow:visible}
+.card:not(.panel)::before{display:none}
+.card:not(.panel):hover{border-top-color:var(--lime)}
+.team{display:flex;flex-wrap:wrap;justify-content:center}
+.team .person{flex:0 1 calc((100% - 120px)/6);min-width:160px}
+#servicios .grid{display:flex;flex-wrap:wrap;justify-content:center}
+#servicios .grid .card{flex:0 1 calc((100% - 40px)/3);min-width:260px}
+</style>
+<script id="wix-site-script" src="https://manage.wix.com/_api/headless-business-setup/v1/headless-business/site-script.js" data-client-id="86424ec6-170e-4546-8909-f85b62245485" async></script></head>
+<body>
+<div class="progress" id="prog" aria-hidden="true"></div>
+<div class="ticker" aria-hidden="true"><div>GeoIstmo Topografía ✦ Levantamientos, replanteos y control de obras en Panamá Oeste ✦ GeoIstmo Topografía ✦ Levantamientos, replanteos y control de obras en Panamá Oeste ✦ GeoIstmo Topografía ✦ Levantamientos, replanteos y control de obras en Panamá Oeste ✦ GeoIstmo Topografía ✦ Levantamientos, replanteos y control de obras en Panamá Oeste ✦ GeoIstmo Topografía ✦ Levantamientos, replanteos y control de obras en Panamá Oeste ✦ GeoIstmo Topografía ✦ Levantamientos, replanteos y control de obras en Panamá Oeste ✦ GeoIstmo Topografía ✦ Levantamientos, replanteos y control de obras en Panamá Oeste ✦ GeoIstmo Topografía ✦ Levantamientos, replanteos y control de obras en Panamá Oeste ✦ </div></div>
+<header class="nav"><div class="wrap">
+<a class="brand" href="#inicio" aria-label="GeoIstmo Topografía, inicio">
+<svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 28c6-4 9-14 15-14s9 6 13 8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 33c6-3 10-10 14-10s7 3 10 4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M20 6l6 15h-12z" fill="#e9590c"/></svg>
+GeoIstmo</a>
+<nav aria-label="Principal"><a href="#inicio">Inicio</a><a href="#nosotros">Acerca de nosotros</a><a href="#servicios">Servicios</a><a href="#cotizador">Cotizador</a><a href="#portafolio">Portafolio</a><a href="#contacto">Contacto y noticias</a></nav>
+<a class="btn nav-cta" href="#cotizador">Cotizar <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg></a>
+</div></header>
+
+<main>
+<section class="hero" id="inicio" style="border:0">
+<svg class="bg" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true" fill="none" stroke="var(--contour)" stroke-width="1.6">
+<path d="M600 40C820 20 1020 120 1100 280S1000 540 780 540 380 500 250 400 120 140 300 80 480 60 600 40z"/>
+<path d="M610 100C790 90 940 170 1000 290S930 470 770 470 450 440 340 360 230 190 340 140 480 120 610 100z"/>
+<path d="M620 160C760 155 860 215 900 300S850 400 760 400 520 380 440 320 350 230 420 200 520 170 620 160z"/>
+<path d="M640 220C720 220 790 250 800 305S760 340 720 340 580 330 540 295 510 245 560 235 600 222 640 220z"/>
+<circle cx="900" cy="300" r="8" fill="#dc8c46" stroke="#fff" stroke-width="2.5"/><text x="918" y="305" fill="#eef3f1" stroke="none" font-size="14" font-family="Inter,sans-serif" letter-spacing="1.5">COTA 48,20 M</text>
+</svg>
+<div class="wrap">
+<span class="tag">Topografía para construcción · La Chorrera, Panamá Oeste</span>
+<h1 class="split">GeoIstmo Topografía</h1>
+<p class="lead">Medimos el terreno con precisión antes de que se construya.</p>
+<p>Somos una empresa especializada en levantamientos, replanteos y control de obras para constructoras, urbanizadoras y propietarios de lotes. Usamos GPS RTK, estación total y drones para entregar planos exactos y datos listos para diseñar y construir.</p>
+<a class="btn" href="#cotizador">Solicitar cotización <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg></a><a class="ghost" href="#servicios">Ver servicios</a>
+</div></section>
+
+<section class="stage" id="visor"><div class="wrap">
+<h2>Un plano claro de cada terreno</h2>
+<p>Así presentamos nuestros trabajos: curvas de nivel, puntos de control y datos listos para diseñar y construir. Elige un proyecto.</p>
+<div class="viewer" id="viewer">
+<div class="vbar"><i></i><i></i><i></i><b>GeoIstmo · Visor de proyectos</b><span class="coord">8°53′ N · 79°47′ O</span></div>
+<div class="vbody">
+<div class="vside" id="vside">
+<button type="button" aria-pressed="true">Urbanización Brisas del Campo<small>Levantamiento · La Chorrera</small></button>
+<button type="button" aria-pressed="false">Edificio comercial Plaza Oeste<small>Replanteo · Arraiján</small></button>
+<button type="button" aria-pressed="false">Lote industrial Vista Alegre<small>Georreferenciación · Arraiján</small></button>
+</div>
+<div class="vmap">
+<svg viewBox="0 0 800 460" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Plano con curvas de nivel y la ubicación de los proyectos de GeoIstmo">
+<g fill="none" stroke="#64754b" stroke-width="1.4" opacity=".8"><path d="M-20 360C120 300 200 330 320 260S520 120 820 170"/><path d="M-20 400C130 350 230 380 350 310S540 190 820 230"/><path d="M-20 320C110 250 190 280 300 210S500 70 820 110"/><path d="M-20 280C100 200 180 230 280 150S480 20 820 50"/><path d="M-20 440C140 400 260 430 380 360S560 260 820 290"/></g>
+<g stroke="#d8dcd2" stroke-width="7" fill="none" stroke-linecap="round"><path d="M80 470L260 190L420 -10"/><path d="M0 230L800 330"/></g>
+<g fill="none" stroke="#333" stroke-width="1" stroke-dasharray="5 4" opacity=".55"><rect x="190" y="120" width="110" height="80"/><rect x="450" y="250" width="90" height="70"/><rect x="580" y="70" width="120" height="90"/></g>
+<g class="pin on" tabindex="0" role="button" aria-label="Urbanización Brisas del Campo"><circle class="ring" cx="245" cy="160" r="9" fill="#dc8c46"/><circle class="dotc" cx="245" cy="160" r="9" fill="#dc8c46" stroke="#fff" stroke-width="3"/></g>
+<g class="pin" tabindex="0" role="button" aria-label="Edificio comercial Plaza Oeste"><circle class="ring" cx="495" cy="285" r="9" fill="#dc8c46"/><circle class="dotc" cx="495" cy="285" r="9" fill="#dc8c46" stroke="#fff" stroke-width="3"/></g>
+<g class="pin" tabindex="0" role="button" aria-label="Lote industrial Vista Alegre"><circle class="ring" cx="640" cy="115" r="9" fill="#dc8c46"/><circle class="dotc" cx="640" cy="115" r="9" fill="#dc8c46" stroke="#fff" stroke-width="3"/></g>
+</svg>
+<div class="vcard" id="vcard" aria-live="polite"></div>
+</div></div></div></div></section>
+<section id="nosotros"><div class="wrap">
+<h2>Acerca de nosotros</h2>
+<p class="rv">GeoIstmo nace de seis estudiantes de Topografía de la Universidad Tecnológica de Panamá, Centro Regional de Panamá Oeste. Nuestro ámbito de especialización es la topografía aplicada a la construcción: urbanizaciones, edificaciones y obras civiles en el oeste del país.</p>
+<div class="grid">
+<div class="card mv"><h3>Misión</h3><p>Brindar datos topográficos precisos y entregados a tiempo, para que cada obra se diseñe y se construya sobre medidas confiables.</p></div>
+<div class="card mv"><h3>Visión</h3><p>Ser la empresa topográfica de referencia en Panamá Oeste, reconocida por incorporar tecnología moderna y por su trato claro con el cliente.</p></div>
+<div class="card mv"><h3>Valores</h3><p>Precisión, responsabilidad, seguridad en campo, honestidad en las cotizaciones y trabajo en equipo.</p></div>
+</div>
+<h3 style="margin-top:44px">Equipo fundador</h3>
+<div class="team">
+<div class="person"><div class="ini">MF</div><b>Miguel Franco</b><span>Gerente general y director de proyectos</span><p class="small">Define el alcance de cada trabajo, firma los informes técnicos y dirige a los equipos.</p></div>
+<div class="person"><div class="ini">SZ</div><b>Sebastian Zabala</b><span>Jefe de levantamientos de campo</span><p class="small">Coordina las brigadas, los equipos GPS y la estación total en terreno.</p></div>
+<div class="person"><div class="ini">CG</div><b>Carolina Gonzalez</b><span>Especialista en georreferenciación y planos</span><p class="small">Procesa datos, dibuja planos y curvas de nivel y prepara los vuelos con dron.</p></div>
+<div class="person"><div class="ini">RM</div><b>Robert Mclean</b><span>Jefe de replanteo y control de obras</span><p class="small">Traslada los diseños al terreno y verifica niveles y alineaciones durante la obra.</p></div>
+<div class="person"><div class="ini">NV</div><b>Nelvys Villareal</b><span>Coordinación administrativa y atención al cliente</span><p class="small">Gestiona cotizaciones, contratos, proveedores y la comunicación con clientes.</p></div>
+<div class="person"><div class="ini">IF</div><b>Ivan Forero</b><span>Jefe de seguridad y logística de campo</span><p class="small">Coordina el transporte de equipos, la seguridad de las brigadas y la calibración de instrumentos.</p></div>
+</div></div></section>
+
+<section id="servicios"><div class="wrap">
+<h2>Servicios topográficos</h2>
+<p>La cotización de cada servicio depende del tamaño, el acceso y la complejidad del terreno.</p>
+<div class="grid">
+<div class="card"><h3>Levantamiento topográfico</h3><p>Medición de linderos, relieve y construcciones existentes. Sirve para diseñar con datos reales y calcular movimientos de tierra.</p></div>
+<div class="card"><h3>Mensura y lotificación</h3><p>Definición y medición de límites de lotes y segregaciones. Sirve para trámites legales y para evitar disputas de colindancia.</p></div>
+<div class="card"><h3>Replanteo de obras</h3><p>Marcación en campo de ejes, esquinas y niveles según los planos. Sirve para que la obra se construya donde fue diseñada.</p></div>
+<div class="card"><h3>Nivelación</h3><p>Determinación de cotas y pendientes para calles, drenajes y plataformas. Sirve para garantizar un buen escurrimiento del agua.</p></div>
+<div class="card"><h3>Georreferenciación y dron</h3><p>Ubicación del terreno en un sistema de coordenadas oficial y levantamientos aéreos con dron. Sirve para proyectos grandes y para zonas de difícil acceso.</p></div>
+<div class="card"><h3>Planos y control de obras</h3><p>Planos con curvas de nivel y verificación periódica de avance, niveles y volúmenes. Sirve para detectar desviaciones antes de que cuesten dinero.</p></div>
+</div></div></section>
+
+<section id="cotizador"><div class="wrap">
+<h2>Cotizador y guía de servicios</h2>
+<p>Dinos qué necesitas y te mostramos el servicio recomendado. Luego envíanos tu solicitud desde el celular o la computadora.</p>
+<div class="grid">
+<div class="card panel"><h3>¿Qué necesitas hacer?</h3>
+<div class="chips" id="needs">
+<button class="chip" type="button" aria-pressed="false" data-s="lev" data-t="Antes de comprar conviene conocer los linderos, las pendientes y las zonas bajas del terreno.">Voy a comprar un lote</button>
+<button class="chip" type="button" aria-pressed="false" data-s="rep" data-t="Marcamos en el terreno los ejes y niveles de tus planos para que la obra quede donde fue diseñada.">Voy a construir</button>
+<button class="chip" type="button" aria-pressed="false" data-s="men" data-t="Medimos y definimos los límites de cada lote para tus trámites legales.">Quiero dividir un terreno</button>
+<button class="chip" type="button" aria-pressed="false" data-s="geo" data-t="Un vuelo con dron cubre grandes extensiones y zonas de difícil acceso con rapidez.">Mi terreno es grande o de difícil acceso</button>
+<button class="chip" type="button" aria-pressed="false" data-s="niv" data-t="Determinamos las cotas y pendientes para que el agua escurra como debe.">Necesito niveles para calles o drenajes</button>
+<button class="chip" type="button" aria-pressed="false" data-s="pla" data-t="Dibujamos planos con curvas de nivel y revisamos el avance de tu obra cada mes.">Necesito planos o control de obra</button>
+</div>
+<div class="reco" id="reco" aria-live="polite">Elige una opción para ver el servicio recomendado.</div></div>
+<div class="card panel"><h3>Solicita tu cotización</h3>
+<div class="field"><label for="svc">Servicio</label><select id="svc"><option value="lev">Levantamiento topográfico</option><option value="men">Mensura y lotificación</option><option value="rep">Replanteo de obras</option><option value="niv">Nivelación</option><option value="geo">Georreferenciación y dron</option><option value="pla">Planos y control de obras</option></select></div>
+<div class="field"><label for="qty" id="qlabel">Cantidad</label><input id="qty" type="number" min="1" value="1" inputmode="numeric"></div>
+<div class="field"><label for="nm">Tu nombre</label><input id="nm" type="text" autocomplete="name"></div>
+<div class="field"><label for="loc">Ubicación del terreno</label><input id="loc" type="text" placeholder="Ej.: La Chorrera, Barrio Balboa"></div>
+
+<a class="btn" id="wa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a><a class="btn alt" id="ml" href="#">Enviar por correo</a>
+<p class="small">Te responderemos con la cotización después de evaluar el terreno.</p></div>
+</div></div></section>
+
+<section id="portafolio"><div class="wrap">
+<h2>Proyectos y portafolio</h2>
+<p>Ejemplos ficticios de trabajos realizados por el equipo de GeoIstmo. Filtra por tipo de trabajo.</p>
+<div class="chips" id="filters"><button class="chip" type="button" aria-pressed="true" data-f="all">Todos</button><button class="chip" type="button" aria-pressed="false" data-f="levantamiento">Levantamientos</button><button class="chip" type="button" aria-pressed="false" data-f="replanteo">Replanteos</button><button class="chip" type="button" aria-pressed="false" data-f="georreferenciacion">Georreferenciación</button></div>
+<div class="grid">
+<article class="card proj" data-type="levantamiento">
+<img src="https://static.wixstatic.com/media/01e242_f7ba43e4cd574973a1440b9c78da8ccf~mv2.jpeg" alt="Topógrafo midiendo un terreno con equipo de levantamiento en el campo" loading="lazy" width="600" height="400"><p class="small" style="margin:-6px 0 12px">Fotografía referencial</p>
+<h3>Levantamiento: Urbanización Brisas del Campo</h3>
+<p>Levantamiento planimétrico y altimétrico de un terreno para 120 viviendas.</p>
+<dl><dt>Ubicación:</dt><dd>La Chorrera</dd><dt>Superficie:</dt><dd>12,4 ha</dd><dt>Resultado:</dt><dd>Plano con curvas de nivel cada 0,50 m y cálculo de movimiento de tierra.</dd></dl></article>
+<article class="card proj" data-type="replanteo">
+<img src="https://static.wixstatic.com/media/01e242_ae6f1678c72d4a30b73635d6a49730fa~mv2.jpeg" alt="Operario con estación total en una obra de construcción" loading="lazy" width="600" height="400"><p class="small" style="margin:-6px 0 12px">Fotografía referencial</p>
+<h3>Replanteo: Edificio comercial Plaza Oeste</h3>
+<p>Replanteo de ejes y niveles de cimentación para un edificio de cuatro pisos.</p>
+<dl><dt>Ubicación:</dt><dd>Arraiján</dd><dt>Superficie:</dt><dd>2 800 m²</dd><dt>Resultado:</dt><dd>Ejes marcados con tolerancia de 5 mm y verificación semanal de niveles.</dd></dl></article>
+<article class="card proj" data-type="georreferenciacion">
+<img src="https://static.wixstatic.com/media/01e242_b07df30671484a60a89246485c0540ee~mv2.jpeg" alt="Vista aérea de un terreno en desarrollo con maquinaria" loading="lazy" width="600" height="400"><p class="small" style="margin:-6px 0 12px">Fotografía referencial</p>
+<h3>Georreferenciación: Lote industrial Vista Alegre</h3>
+<p>Georreferenciación y vuelo con dron de un lote industrial para un proyecto de bodegas.</p>
+<dl><dt>Ubicación:</dt><dd>Vista Alegre, Arraiján</dd><dt>Superficie:</dt><dd>6,8 ha</dd><dt>Resultado:</dt><dd>Cuatro puntos de control, ortofoto y modelo digital del terreno entregados en tres días.</dd></dl></article>
+</div></div></section>
+
+<section id="contacto"><div class="wrap">
+<h2>Contacto y noticias</h2>
+<div class="grid">
+<div class="card"><h3>Escríbenos</h3>
+<p><b>Correo:</b> <a href="mailto:geoistmopma@gmail.com">geoistmopma@gmail.com</a><br><b>Teléfono:</b> <a href="tel:+50769767891">+507 6976-7891</a><br><b>Dirección:</b> Calle 20 Oeste, edificio GeoIstmo, La Chorrera, Panamá Oeste<br><b>Horario:</b> lunes a viernes, 7:30 a. m. a 4:30 p. m.</p>
+<a class="btn" href="mailto:geoistmopma@gmail.com?subject=Solicitud%20de%20cotizaci%C3%B3n">Pedir cotización</a></div>
+<div class="card news"><h3>Noticias y recomendaciones</h3>
+<p><time>Nov. 2026</time><br><b>Incorporamos GPS RTK de doble frecuencia.</b> Reduce el tiempo de campo hasta en un 40 % en lotes grandes.</p>
+<p><time>Oct. 2026</time><br><b>Recomendación:</b> pide un levantamiento topográfico antes de comprar un lote. Revela pendientes, linderos y zonas inundables que no se ven a simple vista.</p>
+<p><time>Sep. 2026</time><br><b>Alianza con una constructora local</b> para el control topográfico de obras residenciales.</p></div>
+</div></div></section>
+</main>
+<footer><div class="wrap"><div class="fgrid"><div><a class="brand" href="#inicio" aria-label="GeoIstmo Topografía">
+<svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 28c6-4 9-14 15-14s9 6 13 8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 33c6-3 10-10 14-10s7 3 10 4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M20 6l6 15h-12z" fill="#e9590c"/></svg>
+GeoIstmo</a><p>Topografía aplicada a la construcción en Panamá Oeste: medimos antes de construir.</p></div><div><h4>Navegación</h4><a href="#nosotros">Acerca de nosotros</a><a href="#servicios">Servicios</a><a href="#cotizador">Cotizador</a><a href="#portafolio">Portafolio</a><a href="#contacto">Contacto y noticias</a></div><div><h4>Contacto</h4><a href="tel:+50769767891">+507 6976-7891</a><a href="mailto:geoistmopma@gmail.com">geoistmopma@gmail.com</a><span>Calle 20 Oeste, edificio GeoIstmo, La Chorrera, Panamá Oeste</span><span>Lunes a viernes, 7:30 a. m. a 4:30 p. m.</span></div></div><p class="legal">© 2026 GeoIstmo Topografía · Empresa ficticia creada para la Universidad Tecnológica de Panamá, Centro Regional de Panamá Oeste. Fotografías referenciales de Pexels.</p></div></footer>
+<div class="fab"><a href="https://wa.me/50769767891" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+50769767891">Llamar</a></div>
+<script>
+(function(){
+var S={lev:{n:"Levantamiento topográfico",u:"hectáreas",s:"hectárea"},men:{n:"Mensura y lotificación",u:"lotes",s:"lote"},rep:{n:"Replanteo de obras",u:"visitas",s:"visita"},niv:{n:"Nivelación",u:"jornadas",s:"jornada"},geo:{n:"Georreferenciación y dron",u:"proyectos",s:"proyecto"},pla:{n:"Planos y control de obras",u:"planos",s:"plano"}};
+function $(i){return document.getElementById(i)}
+function money(n){return "B/. "+n.toLocaleString("es-PA")}
+var svc=$("svc"),qty=$("qty");
+function upd(){
+var s=S[svc.value],q=Math.max(1,parseInt(qty.value,10)||1);
+$("qlabel").textContent="Cantidad de "+s.u;
+
+var msg="Hola, soy "+($("nm").value||"un cliente")+". Quisiera cotizar: "+s.n+", "+q+" "+s.u+". Ubicación del terreno: "+($("loc").value||"por confirmar")+".";
+$("wa").href="https://wa.me/50769767891?text="+encodeURIComponent(msg);
+$("ml").href="mailto:geoistmopma@gmail.com?subject="+encodeURIComponent("Solicitud de cotización")+"&body="+encodeURIComponent(msg);
+}
+["svc","qty","nm","loc"].forEach(function(id){$(id).addEventListener("input",upd)});
+upd();
+var needs=document.querySelectorAll("#needs .chip");
+needs.forEach(function(b){b.addEventListener("click",function(){
+needs.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+var k=b.getAttribute("data-s");svc.value=k;upd();
+$("reco").innerHTML="<b>Te recomendamos: "+S[k].n+".</b> "+b.getAttribute("data-t");
+});});
+var fl=document.querySelectorAll("#filters .chip");
+fl.forEach(function(b){b.addEventListener("click",function(){
+fl.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+var f=b.getAttribute("data-f");
+document.querySelectorAll(".proj").forEach(function(a){a.hidden=(f!=="all"&&a.getAttribute("data-type")!==f)});
+});});
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script>
+(function(){
+function $(i){return document.getElementById(i)}
+var P=[{k:"Levantamiento",t:"Urbanización Brisas del Campo",d:"La Chorrera · 12,4 ha",x:"Plano con curvas de nivel cada 0,50 m y cálculo de movimiento de tierra."},{k:"Replanteo",t:"Edificio comercial Plaza Oeste",d:"Arraiján · 2 800 m²",x:"Ejes marcados con tolerancia de 5 mm y verificación semanal de niveles."},{k:"Georreferenciación",t:"Lote industrial Vista Alegre",d:"Vista Alegre, Arraiján · 6,8 ha",x:"Cuatro puntos de control, ortofoto y modelo digital del terreno entregados en tres días."}];
+var side=document.querySelectorAll("#vside button"),pins=document.querySelectorAll("#viewer .pin"),card=$("vcard");
+function sel(i,anim){var p=P[i];
+side.forEach(function(b,j){b.setAttribute("aria-pressed",j===i?"true":"false")});
+pins.forEach(function(g,j){g.classList.toggle("on",j===i)});
+card.innerHTML='<span class="tagv">'+p.k+'</span><h3>'+p.t+'</h3><p>'+p.d+'</p><p>'+p.x+'</p>';
+if(anim&&window.gsap)gsap.fromTo(card,{y:14,autoAlpha:0},{y:0,autoAlpha:1,duration:.5,ease:"power3.out"});}
+side.forEach(function(b,i){b.addEventListener("click",function(){sel(i,true)})});
+pins.forEach(function(g,i){g.addEventListener("click",function(){sel(i,true)});g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();sel(i,true)}})});
+sel(0,false);
+var hdr=document.querySelector("header.nav");
+function onScroll(){hdr.classList.toggle("scrolled",window.scrollY>10)}
+window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+document.querySelectorAll(".card").forEach(function(c){c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")})});
+if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+if(typeof gsap==="undefined"||typeof ScrollTrigger==="undefined")return;
+gsap.registerPlugin(ScrollTrigger);
+var lenis=null;
+if(typeof Lenis!=="undefined"){try{lenis=new Lenis({duration:1.1,smoothWheel:true})}catch(e){lenis=null}}
+if(lenis){
+lenis.on("scroll",ScrollTrigger.update);
+gsap.ticker.add(function(t){lenis.raf(t*1000)});
+gsap.ticker.lagSmoothing(0);
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener("click",function(e){var id=a.getAttribute("href");if(id.length<2)return;var el=document.querySelector(id);if(!el)return;e.preventDefault();lenis.scrollTo(el,{offset:-(hdr.offsetHeight+4)})})});
+}
+var h1=document.querySelector(".hero h1");
+if(h1){var txt=h1.textContent;h1.setAttribute("aria-label",txt);h1.innerHTML=txt.split(" ").map(function(w){return '<span class="w" aria-hidden="true"><span class="wi">'+w+'</span></span>'}).join(" ")}
+var tl=gsap.timeline({defaults:{ease:"power3.out"}});
+tl.from(".hero .wi",{yPercent:150,duration:1,stagger:.12}).from(".hero .tag,.hero p,.hero .btn,.hero .ghost",{y:24,autoAlpha:0,duration:.8,stagger:.1},"-=.5");
+document.querySelectorAll(".hero svg.bg path").forEach(function(p,i){var L=p.getTotalLength();gsap.fromTo(p,{strokeDasharray:L,strokeDashoffset:L},{strokeDashoffset:0,duration:2.6,delay:.2+i*.25,ease:"power2.inOut"})});
+gsap.to(".hero svg.bg",{yPercent:14,scale:1.08,ease:"none",scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:true}});
+gsap.to("#prog",{scaleX:1,ease:"none",scrollTrigger:{start:0,end:"max",scrub:.2}});
+document.querySelectorAll(".rv").forEach(function(el){
+var w=el.textContent.trim().split(" ");
+el.innerHTML=w.map(function(x){return '<span class="rw">'+x+'</span>'}).join(" ");
+gsap.fromTo(el.querySelectorAll(".rw"),{opacity:.2},{opacity:1,stagger:.06,ease:"none",scrollTrigger:{trigger:el,start:"top 85%",end:"bottom 50%",scrub:true}});});
+var reveal=".card,.person,.stat,.proj,.logos li,.viewer";
+gsap.set(reveal,{autoAlpha:0,y:40});
+ScrollTrigger.batch(reveal,{start:"top 92%",once:true,onEnter:function(b){gsap.to(b,{autoAlpha:1,y:0,duration:.8,stagger:.1,ease:"power3.out",overwrite:true,clearProps:"transform"})}});
+gsap.set("section h2",{autoAlpha:0,y:28});
+ScrollTrigger.batch("section h2",{start:"top 92%",once:true,onEnter:function(b){gsap.to(b,{autoAlpha:1,y:0,duration:.7,stagger:.08,ease:"power3.out",overwrite:true,clearProps:"transform"})}});
+gsap.from(".vmap svg g[fill=none] path",{opacity:0,duration:1.2,stagger:.15,scrollTrigger:{trigger:"#viewer",start:"top 75%",once:true}});
+document.querySelectorAll(".stat b").forEach(function(b){var to=parseFloat(b.getAttribute("data-to")),pre=b.getAttribute("data-pre")||"",suf=b.getAttribute("data-suf")||"",o={v:0};b.textContent=pre+"0"+suf;ScrollTrigger.create({trigger:b,start:"top 92%",once:true,onEnter:function(){gsap.to(o,{v:to,duration:1.8,ease:"power2.out",onUpdate:function(){b.textContent=pre+Math.round(o.v)+suf}})}})});
+document.querySelectorAll("main section[id]").forEach(function(s){ScrollTrigger.create({trigger:s,start:"top 45%",end:"bottom 45%",onToggle:function(self){var l=document.querySelector('nav a[href="#'+s.id+'"]');if(l)l.classList.toggle("active",self.isActive)}})});
+if(window.matchMedia("(pointer:fine)").matches){
+document.querySelectorAll(".btn").forEach(function(b){b.addEventListener("pointermove",function(e){var r=b.getBoundingClientRect();gsap.to(b,{x:(e.clientX-r.left-r.width/2)*.25,y:(e.clientY-r.top-r.height/2)*.35,duration:.3})});b.addEventListener("pointerleave",function(){gsap.to(b,{x:0,y:0,duration:.5,ease:"elastic.out(1,.5)"})})});
+document.querySelectorAll(".proj").forEach(function(c){c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;gsap.to(c,{rotateY:x*7,rotateX:-y*7,transformPerspective:900,duration:.4})});c.addEventListener("pointerleave",function(){gsap.to(c,{rotateX:0,rotateY:0,duration:.6,ease:"power3.out"})})});
+}
+document.querySelectorAll("#filters .chip").forEach(function(c){c.addEventListener("click",function(){var v=Array.prototype.filter.call(document.querySelectorAll(".proj"),function(a){return !a.hidden});gsap.fromTo(v,{autoAlpha:0,y:24},{autoAlpha:1,y:0,duration:.6,stagger:.1,ease:"power3.out",overwrite:true,clearProps:"transform"})})});
+window.addEventListener("load",function(){ScrollTrigger.refresh()});
+})();
+</script>
+</body>
+</html>
